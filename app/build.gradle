@@ -1,0 +1,68 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'com.chalco.jose.lab13'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.chalco.jose.lab13"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures{
+        viewBinding true
+        // aqui estoy activando viewbinding, que me permite vincular las vistas del layout directamente con el codigo sin usar findViewById. esto hace que trabajar con las vistas sea mas sencillo y seguro.
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    def camerax_version = "1.0.1"
+    // aqui estoy definiendo una variable para la version de camerax que voy a usar en las dependencias
+
+    // CameraX core library using camera2 implementation
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    // libreria principal de camerax que usa la implementacion de camera2
+
+    // CameraX Lifecycle Library
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    // esta es la libreria de lifecycle para integrar camerax con el ciclo de vida de las actividades o fragments
+
+    // CameraX View class
+    implementation "androidx.camera:camera-view:1.0.0-alpha27"
+    // libreria para usar las vistas de camerax, como el preview de la camara
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    // esta libreria es glide, la uso para cargar y manejar imagenes mas facilmente
+
+}
